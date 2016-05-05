@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radev.Licensing", "Radev.Licensing\Radev.Licensing.csproj", "{E4A2E2BD-81AC-4F72-A63A-65AFD4AAC4DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1335EA89-4D62-468E-B284-E44D84459236}"
+	ProjectSection(SolutionItems) = preProject
+		Feature.cs = Feature.cs
+		LicenseManager.cs = LicenseManager.cs
+		MIT License.txt = MIT License.txt
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radev.Licensing.Tests", "Radev.Licensing.Tests\Radev.Licensing.Tests.csproj", "{A8E7AD17-AE82-487C-B0D9-29D579D70E39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radev.Licensing.Server", "Radev.Licensing.Server\Radev.Licensing.Server.csproj", "{C6606B93-66BC-49A2-A1B9-920D6B33C0E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{FE5A9127-6E0C-4889-BB28-002209F62497}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radev.Licensing.PowerShell", "Utilities\Radev.Licensing.PowerShell\Radev.Licensing.PowerShell.csproj", "{9F3F9239-8158-4A1C-AA50-9B6F04F7C688}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4A2E2BD-81AC-4F72-A63A-65AFD4AAC4DA}.Debug|Any CPU.ActiveCfg = Debug (PRIVATE)|Any CPU
+		{E4A2E2BD-81AC-4F72-A63A-65AFD4AAC4DA}.Debug|Any CPU.Build.0 = Debug (PRIVATE)|Any CPU
+		{E4A2E2BD-81AC-4F72-A63A-65AFD4AAC4DA}.Release|Any CPU.ActiveCfg = Release (PRIVATE)|Any CPU
+		{E4A2E2BD-81AC-4F72-A63A-65AFD4AAC4DA}.Release|Any CPU.Build.0 = Release (PRIVATE)|Any CPU
+		{A8E7AD17-AE82-487C-B0D9-29D579D70E39}.Debug|Any CPU.ActiveCfg = Debug (PRIVATE)|Any CPU
+		{A8E7AD17-AE82-487C-B0D9-29D579D70E39}.Debug|Any CPU.Build.0 = Debug (PRIVATE)|Any CPU
+		{A8E7AD17-AE82-487C-B0D9-29D579D70E39}.Release|Any CPU.ActiveCfg = Release (PRIVATE)|Any CPU
+		{A8E7AD17-AE82-487C-B0D9-29D579D70E39}.Release|Any CPU.Build.0 = Release (PRIVATE)|Any CPU
+		{C6606B93-66BC-49A2-A1B9-920D6B33C0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6606B93-66BC-49A2-A1B9-920D6B33C0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6606B93-66BC-49A2-A1B9-920D6B33C0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6606B93-66BC-49A2-A1B9-920D6B33C0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3F9239-8158-4A1C-AA50-9B6F04F7C688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3F9239-8158-4A1C-AA50-9B6F04F7C688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3F9239-8158-4A1C-AA50-9B6F04F7C688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3F9239-8158-4A1C-AA50-9B6F04F7C688}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F3F9239-8158-4A1C-AA50-9B6F04F7C688} = {FE5A9127-6E0C-4889-BB28-002209F62497}
+	EndGlobalSection
+EndGlobal
