@@ -1,10 +1,13 @@
 # .NET License Manager
-This small project will help you to manage licensing in your .NET applications. Please note that it's still
-a work in progress (inspired from Stack Overflow [Where can I store (and manage) Application license information?](http://stackoverflow.com/q/20676008/1207195)) then many things need to be completed (see issues) and code must be reviewed and simplified.
+This small project will help you to manage licensing in your .NET applications. To check for license
+may be as simple as:
 
-All documentation is still a TO DO, please refer to both source code and cited SO post.
+```C#
+    if (!LicenseManager.IsFeatureAvailable(Feature.Startup)
+        Environment.Exit(1);
+```
 
-Any help on this (also for documentation) is more than welcome!
+Please note that it's still a work in progress (inspired from Stack Overflow [Where can I store (and manage) Application license information?](http://stackoverflow.com/q/20676008/1207195)) then many things need to be completed (see issues) and code must be reviewed and simplified. All documentation is still a TO DO, please refer to both source code and cited SO post. Any help on this (also for documentation) is more than welcome!
 
 ## Glossary
 
@@ -65,9 +68,11 @@ LicenseWriter.ToFile("path_for_license", license);
 * When you need to check for license (or for a specific feature) simply call `LicenseManager` methods:
  
 ```C#
+    // Mere license presence enables a basic set of features...
     if (LicenseManager.IsLicenseValid == false)
       QuitApplicationBecauseInvalidLicense();
 
+    // Here we check if an advanced feature is available too...
     if (LicenseManager.IsFeatureAvailable(Feature.AdvancedExpensiveFeature) {
       ExecuteAnAdvancedExpensiveFeature(); 
     }
@@ -218,11 +223,15 @@ won't match.
 
 Of course you also need to protect application assemblies otherwise they may be tampered. This topic is
 vast (especially because a cracker has a big _surface attack_) but you should at least start signing
-all your assemblies. There are more things to consider:
+all your assemblies and then - eventually - embed `Radev.Licensing.dll` into your application assembly as
+a resource (to make things slightly more complicate for _casual_ crackers), you will load it inside
+`AppDomain.CurrentDomain.AssemblyResolve` event handler.
+
+There are more things to consider:
 
 * If application can load untrusted/unsigned plugins then cracker may simply use Reflection to
 bypass/modify already validated in-memory license data.
-* Code may be patched at run-time too bypassing license checks (the (in)famous `NOP` instead of `CALL`).
+* Code may be patched at run-time bypassing license checks (the (in)famous `NOP` instead of `CALL`).
 * WMI information may be _faked_.
 * An entire system may be cloned using virtual machines.
 * Application may be _shared_ using Web Access, Terminal Server or similar technology.
