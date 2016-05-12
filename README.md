@@ -78,7 +78,18 @@ LicenseWriter.ToFile("path_for_license", license);
     }
 ```
 
-* TODO
+Please note you can assign a validity interval for your license (I strongly suggest to always
+make it valid from the day it has been created) and also specify which version (again a range)
+of your software is enabled by that license. For example:
+
+```C#
+// This license is valid from now to the far future...
+license.Validity = new Interval(DateTime.Now, null);
+
+// For any software versione in the 2.xx family
+license.MinimumVersion = new Version(2, 0); 
+license.MaximumVersion = new Version(2, 65535);
+```
 
 ## How It Works
 
