@@ -3,7 +3,7 @@ This small project will help you to manage licensing in your .NET applications. 
 may be as simple as:
 
 ```C#
-if (!LicenseManagerIsLicenseValid)
+if (!LicenseManager.IsLicenseValid)
   Environment.Exit(1);
 ```
 
