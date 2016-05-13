@@ -30,7 +30,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Radev.Licensing.Client;
 
-namespace Radev.Licensing.Server
+namespace Radev.Licensing
 {
 	/// <summary>
 	/// Factory class to create a new <see cref="License"/> from a secure string representation.

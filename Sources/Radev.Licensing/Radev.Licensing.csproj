@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Radev.Licensing</RootNamespace>
     <AssemblyName>Radev.License</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -22,6 +22,7 @@
     <DefineConstants>TRACE;DEBUG;PRIVATE_BUILD FEATURE_PARALLEL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release %28PRIVATE%29|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE;PRIVATE_BUILD FEATURE_PARALLEL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -69,6 +71,7 @@
     <Compile Include="LicenseException.cs" />
     <Compile Include="Client\NativeMethods.cs" />
     <Compile Include="Client\IniFile.cs" />
+    <Compile Include="LicenseReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Client\ClientSecureCommunication.cs" />
     <Compile Include="Client\StringExtensions.cs" />
