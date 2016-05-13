@@ -68,14 +68,14 @@ LicenseWriter.ToFile("path_for_license", license);
 * When you need to check for license (or for a specific feature) simply call `LicenseManager` methods:
  
 ```C#
-    // Mere license presence enables a basic set of features...
-    if (LicenseManager.IsLicenseValid == false)
-      QuitApplicationBecauseInvalidLicense();
+// Mere license presence enables a basic set of features...
+if (LicenseManager.IsLicenseValid == false)
+    QuitApplicationBecauseInvalidLicense();
 
-    // Here we check if an advanced feature is available too...
-    if (LicenseManager.IsFeatureAvailable(Feature.AdvancedExpensiveFeature)) {
-      ExecuteAnAdvancedExpensiveFeature(); 
-    }
+// Here we check if an advanced feature is available too...
+if (LicenseManager.IsFeatureAvailable(Feature.AdvancedExpensiveFeature)) {
+    ExecuteAnAdvancedExpensiveFeature(); 
+}
 ```
 
 Please note you can assign a validity interval for your license (I strongly suggest to always
@@ -90,7 +90,6 @@ license.Validity = new Interval(DateTime.Now, null);
 license.MinimumVersion = new Version(2, 0); 
 license.MaximumVersion = new Version(2, 65535);
 ```
-
 ## How It Works
 
 To have an adequate protection few assumptions must be satisfied:
