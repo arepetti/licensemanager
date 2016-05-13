@@ -3,7 +3,7 @@ This small project will help you to manage licensing in your .NET applications. 
 may be as simple as:
 
 ```C#
-if (!LicenseManager.IsFeatureAvailable(Feature.Startup)
+if (!LicenseManagerIsLicenseValid)
   Environment.Exit(1);
 ```
 
@@ -73,7 +73,7 @@ LicenseWriter.ToFile("path_for_license", license);
       QuitApplicationBecauseInvalidLicense();
 
     // Here we check if an advanced feature is available too...
-    if (LicenseManager.IsFeatureAvailable(Feature.AdvancedExpensiveFeature) {
+    if (LicenseManager.IsFeatureAvailable(Feature.AdvancedExpensiveFeature)) {
       ExecuteAnAdvancedExpensiveFeature(); 
     }
 ```
