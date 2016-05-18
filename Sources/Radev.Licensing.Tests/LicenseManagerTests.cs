@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,55 +30,55 @@ using Radev.Licensing.Server;
 
 namespace Radev.Licensing.Tests
 {
-	// Be careful to add more tests here: we're testing a static class,
-	// even if license itself is local per thread we rely on a physical file on
-	// a known location then tests may randomly fail. These tests should
-	// be refactored, see LicenseManagerTests.IsValidIfLocalLicenseDoesNotAlreadyExist().
+    // Be careful to add more tests here: we're testing a static class,
+    // even if license itself is local per thread we rely on a physical file on
+    // a known location then tests may randomly fail. These tests should
+    // be refactored, see LicenseManagerTests.IsValidIfLocalLicenseDoesNotAlreadyExist().
 
-	[TestClass]
-	public class LicenseManagerTests : TestBase
-	{
-		[TestMethod]
-		public void CanReadValidLicense()
-		{
-			IsValidIfLocalLicenseDoesNotAlreadyExist();
+    [TestClass]
+    public class LicenseManagerTests : TestBase
+    {
+        [TestMethod]
+        public void CanReadValidLicense()
+        {
+            IsValidIfLocalLicenseDoesNotAlreadyExist();
 
-			// Assuming test environment can write in one of folders license file may be.
-			using (var path = new TemporaryFile(LicenseManager.GetLicenseFilePath()))
-			{
-				// In test environment there isn't license file/storage then this test must fail.
-				// After this we must discard cached (and empty) license to load the newly created one.
-				Assert.IsNull(LicenseManager.License);
-				Assert.IsFalse(LicenseManager.IsLicenseValid);
+            // Assuming test environment can write in one of folders license file may be.
+            using (var path = new TemporaryFile(LicenseManager.GetLicenseFilePath()))
+            {
+                // In test environment there isn't license file/storage then this test must fail.
+                // After this we must discard cached (and empty) license to load the newly created one.
+                Assert.IsNull(LicenseManager.License);
+                Assert.IsFalse(LicenseManager.IsLicenseValid);
 
-				LicenseManager.Renew();
+                LicenseManager.Renew();
 
-				// Now we prepare a fake license file to check few basics in
-				// LicenseManager class.
-				var contact = ContactFactory.Create<Contact>();
-				var license = LicenseFactory.Create<License>(contact);
-				license.Features.Add((int)Feature.Example1, 1);
+                // Now we prepare a fake license file to check few basics in
+                // LicenseManager class.
+                var contact = ContactFactory.Create<Contact>();
+                var license = LicenseFactory.Create<License>(contact);
+                license.Features.Add((int)Feature.Example1, 1);
 
-				LicenseWriter.ToFile(path, license);
+                LicenseWriter.ToFile(path, license);
 
-				Assert.IsTrue(LicenseManager.IsLicenseValid);
-				Assert.IsNotNull(LicenseManager.License);
-				Assert.AreEqual(LicenseManager.License.Id, license.Id);
-				Assert.IsTrue(LicenseManager.IsFeatureAvailable(Feature.Example1));
-			}
-		}
+                Assert.IsTrue(LicenseManager.IsLicenseValid);
+                Assert.IsNotNull(LicenseManager.License);
+                Assert.AreEqual(LicenseManager.License.Id, license.Id);
+                Assert.IsTrue(LicenseManager.IsFeatureAvailable(Feature.Example1));
+            }
+        }
 
-		private static void IsValidIfLocalLicenseDoesNotAlreadyExist()
-		{
-			// On development machines we probably have our "local" license file, I don't
-			// want to overwrite it (and then delete it) with license generated for this test.
-			// It would be better to write a proper mock (static class is bad to test)
-			// but it's a compromise to keep "surface attack" as low as possible.
-			// Every single time you change LicenseManager class you should (manually...) delete
-			// your old license file and run all these tests again.
-			var licenseFilePath = LicenseManager.GetLicenseFilePath();
-			if (File.Exists(licenseFilePath))
-				Assert.Inconclusive("Test skipped because '{0}' already exists. This test may not run on development machines.", licenseFilePath);
-		}
-	}
+        private static void IsValidIfLocalLicenseDoesNotAlreadyExist()
+        {
+            // On development machines we probably have our "local" license file, I don't
+            // want to overwrite it (and then delete it) with license generated for this test.
+            // It would be better to write a proper mock (static class is bad to test)
+            // but it's a compromise to keep "surface attack" as low as possible.
+            // Every single time you change LicenseManager class you should (manually...) delete
+            // your old license file and run all these tests again.
+            var licenseFilePath = LicenseManager.GetLicenseFilePath();
+            if (File.Exists(licenseFilePath))
+                Assert.Inconclusive("Test skipped because '{0}' already exists. This test may not run on development machines.", licenseFilePath);
+        }
+    }
 }

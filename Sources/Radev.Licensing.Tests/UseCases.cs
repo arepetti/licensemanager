@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,52 +29,52 @@ using Radev.Licensing.Server;
 
 namespace Radev.Licensing.Tests
 {
-	[TestClass]
-	public class UseCases : TestBase
-	{
-		[TestMethod, TestCategory("Client")]
-		public void SelfIssuedLicense()
-		{
-			using (var temp = new TemporaryFile())
-			{
-				var contact = ContactFactory.Create<Contact>();
-				var license = LicenseFactory.Create<License>(contact);
+    [TestClass]
+    public class UseCases : TestBase
+    {
+        [TestMethod, TestCategory("Client")]
+        public void SelfIssuedLicense()
+        {
+            using (var temp = new TemporaryFile())
+            {
+                var contact = ContactFactory.Create<Contact>();
+                var license = LicenseFactory.Create<License>(contact);
 
-				LicenseWriter.ToFile(temp, license);
+                LicenseWriter.ToFile(temp, license);
 
-				license = LicenseReader.FromFile(temp);
-				Assert.IsTrue(license.IsValid());
-			}
-		}
+                license = LicenseReader.FromFile(temp);
+                Assert.IsTrue(license.IsValid());
+            }
+        }
 
-		[TestMethod, TestCategory("Client")]
-		public void InvalidIfHardwareConfigurationChanged()
-		{
-			using (var temp = new TemporaryFile())
-			{
-				var contact = ContactFactory.Create<Contact>();
-				var license = LicenseFactory.Create<License>(contact);
+        [TestMethod, TestCategory("Client")]
+        public void InvalidIfHardwareConfigurationChanged()
+        {
+            using (var temp = new TemporaryFile())
+            {
+                var contact = ContactFactory.Create<Contact>();
+                var license = LicenseFactory.Create<License>(contact);
 
-				LicenseWriter.ToFile(temp, license);
+                LicenseWriter.ToFile(temp, license);
 
-				license = LicenseReader.FromFile<LicenseWithChangedHardware, IniLicenseTextConverter<LicenseWithChangedHardware>>(temp);
-				Assert.IsFalse(license.IsValid());
-			}
-		}
+                license = LicenseReader.FromFile<LicenseWithChangedHardware, IniLicenseTextConverter<LicenseWithChangedHardware>>(temp);
+                Assert.IsFalse(license.IsValid());
+            }
+        }
 
-		[TestMethod, TestCategory("Client")]
-		public void ValidForMinorHardwareChanges()
-		{
-			using (var temp = new TemporaryFile())
-			{
-				var contact = ContactFactory.Create<ContactForSlightlyChangedHardware>();
-				var license = LicenseFactory.Create<License>(contact);
+        [TestMethod, TestCategory("Client")]
+        public void ValidForMinorHardwareChanges()
+        {
+            using (var temp = new TemporaryFile())
+            {
+                var contact = ContactFactory.Create<ContactForSlightlyChangedHardware>();
+                var license = LicenseFactory.Create<License>(contact);
 
-				LicenseWriter.ToFile(temp, license);
+                LicenseWriter.ToFile(temp, license);
 
-				license = LicenseReader.FromFile<LicenseWithSlightlyChangedHardware, IniLicenseTextConverter<LicenseWithSlightlyChangedHardware>>(temp);
-				Assert.IsTrue(license.IsValid());
-			}
-		}
-	}
+                license = LicenseReader.FromFile<LicenseWithSlightlyChangedHardware, IniLicenseTextConverter<LicenseWithSlightlyChangedHardware>>(temp);
+                Assert.IsTrue(license.IsValid());
+            }
+        }
+    }
 }

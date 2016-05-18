@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,23 +26,23 @@ using System;
 
 namespace Radev.Licensing
 {
-	/// <summary>
-	/// Represent a contact, the token sent by an unique client asking
-	/// for a license.
-	/// </summary>
-	public class Contact : Token
-	{
-		/// <summary>
-		/// Gets/sets software version for which this contact has been created.
-		/// </summary>
-		/// <value>
-		/// Software version for which this contact has been created and then
-		/// for which license must be issued.
-		/// </value>
-		public Version SoftwareVersion
-		{
-			get;
-			set;
-		}
-	}
+    /// <summary>
+    /// Represent a contact, the token sent by an unique client asking
+    /// for a license.
+    /// </summary>
+    public class Contact : Token
+    {
+        /// <summary>
+        /// Gets/sets software version for which this contact has been created.
+        /// </summary>
+        /// <value>
+        /// Software version for which this contact has been created and then
+        /// for which license must be issued.
+        /// </value>
+        public Version SoftwareVersion
+        {
+            get;
+            set;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,10 +24,10 @@
 
 namespace Radev.Licensing.Client
 {
-	// IMPORTANT: keep in sync this file with Keys.cs in Server library
-	static class Keys
-	{
-		public const string PrivateKey = "";
-		public const string PublicKey = "<RSAKeyValue><Modulus>3YNZjUoz0xUEA6C5Lj9StX/nstpNg4vOt8yJdFTkMDMJwp7HhtiYq33OXw8s/k8njrkgLtrm/uOE5Hnk9xXhXlT4jGhsxCmaN04f4deVr28vFFFN73CSGmX73UK8sS3hWeBk0eYAPBL7zg9ZlsLwsqyVRefIshVyerUf4jPckOs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-	}
+    // IMPORTANT: keep in sync this file with Keys.cs in Server library
+    static class Keys
+    {
+        public const string PrivateKey = "";
+        public const string PublicKey = "<RSAKeyValue><Modulus>3YNZjUoz0xUEA6C5Lj9StX/nstpNg4vOt8yJdFTkMDMJwp7HhtiYq33OXw8s/k8njrkgLtrm/uOE5Hnk9xXhXlT4jGhsxCmaN04f4deVr28vFFFN73CSGmX73UK8sS3hWeBk0eYAPBL7zg9ZlsLwsqyVRefIshVyerUf4jPckOs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+    }
 }

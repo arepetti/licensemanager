@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,17 +29,17 @@ using System.Text;
 
 namespace Radev.Licensing.Client
 {
-	static class UnsafeNativeMethods
-	{
-		public static string GetModuleFileName(HandleRef hModule)
-		{
-			var buffer = new StringBuilder(NativeMethods.MAX_PATH);
-			UnsafeNativeMethods.GetModuleFileName(hModule, buffer, buffer.Capacity);
+    static class UnsafeNativeMethods
+    {
+        public static string GetModuleFileName(HandleRef hModule)
+        {
+            var buffer = new StringBuilder(NativeMethods.MAX_PATH);
+            UnsafeNativeMethods.GetModuleFileName(hModule, buffer, buffer.Capacity);
 
-			return Path.GetFullPath(buffer.ToString());
-		}
+            return Path.GetFullPath(buffer.ToString());
+        }
 
-		[DllImport("kernel32.dll", CharSet = CharSet.Auto)]
-		private static extern int GetModuleFileName(HandleRef hModule, StringBuilder buffer, int length);
-	}
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        private static extern int GetModuleFileName(HandleRef hModule, StringBuilder buffer, int length);
+    }
 }

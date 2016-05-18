@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,13 +26,13 @@ using System;
 
 namespace Radev.Licensing
 {
-	// This is a fictional enumeration, if you need it just replace with
-	// your own feature list. If you do not need features management simply drop it.
-	// This enumeration is separate from LicenseManager.cs because it will be probably
-	// shared with server-side code/UI for license generation.
-	enum Feature
-	{
-		Example1 = 0,
-		Example2 = 1,
-	}
+    // This is a fictional enumeration, if you need it just replace with
+    // your own feature list. If you do not need features management simply drop it.
+    // This enumeration is separate from LicenseManager.cs because it will be probably
+    // shared with server-side code/UI for license generation.
+    enum Feature
+    {
+        Example1 = 0,
+        Example2 = 1,
+    }
 }

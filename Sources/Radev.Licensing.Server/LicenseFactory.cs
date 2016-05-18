@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,36 +26,36 @@ using System;
 
 namespace Radev.Licensing.Server
 {
-	/// <summary>
-	/// Factory class to create a new <see cref="License"/>.
-	/// </summary>
-	public static class LicenseFactory
-	{
-		/// <summary>
-		/// Creates a new <see cref="License"/> from an existing <see cref="Contact"/>.
-		/// </summary>
-		/// <typeparam name="TLicense">Concrete license class.</typeparam>
-		/// <param name="contact">Contact from/for which a new license must be created.</param>
-		/// <returns>
-		/// A new license tied with hardware configuration described in specified contact.
-		/// </returns>
-		/// <exception cref="ArgumentNullException">
-		/// <paramref name="contact"/> is <see langword="null"/>.
-		/// </exception>
-		public static TLicense Create<TLicense>(Contact contact)
-			where TLicense : License, new()
-		{
-			if (contact == null)
-				throw new ArgumentNullException("contact");
+    /// <summary>
+    /// Factory class to create a new <see cref="License"/>.
+    /// </summary>
+    public static class LicenseFactory
+    {
+        /// <summary>
+        /// Creates a new <see cref="License"/> from an existing <see cref="Contact"/>.
+        /// </summary>
+        /// <typeparam name="TLicense">Concrete license class.</typeparam>
+        /// <param name="contact">Contact from/for which a new license must be created.</param>
+        /// <returns>
+        /// A new license tied with hardware configuration described in specified contact.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="contact"/> is <see langword="null"/>.
+        /// </exception>
+        public static TLicense Create<TLicense>(Contact contact)
+            where TLicense : License, new()
+        {
+            if (contact == null)
+                throw new ArgumentNullException("contact");
 
-			var license = new TLicense();
-			license.Id = Guid.NewGuid().ToString();
-			license.CreationTime = DateTime.UtcNow;
+            var license = new TLicense();
+            license.Id = Guid.NewGuid().ToString();
+            license.CreationTime = DateTime.UtcNow;
 
-			foreach (var entry in contact.RequiredHardwareConfiguration)
-				license.RequiredHardwareConfiguration.Add(entry);
+            foreach (var entry in contact.RequiredHardwareConfiguration)
+                license.RequiredHardwareConfiguration.Add(entry);
 
-			return license;
-		}
-	}
+            return license;
+        }
+    }
 }

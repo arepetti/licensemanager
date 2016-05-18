@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@ using System.Runtime.InteropServices;
 
 namespace Radev.Licensing.Client
 {
-	static class NativeMethods
-	{
-		public static readonly HandleRef NullHandle = new HandleRef();
+    static class NativeMethods
+    {
+        public static readonly HandleRef NullHandle = new HandleRef();
 
-		public const int MAX_PATH = 260;
-	}
+        public const int MAX_PATH = 260;
+    }
 }

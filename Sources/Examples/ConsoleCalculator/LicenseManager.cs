@@ -46,8 +46,8 @@ namespace Radev.Licensing
             return (_license.ReadFeature((int)feature) ?? -1) >= 0;
         }
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ExitIfNotSatisfied(Func<bool> action)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static void ExitIfNotSatisfied(Func<bool> action)
         {
             if (!action())
                 Environment.Exit(1);

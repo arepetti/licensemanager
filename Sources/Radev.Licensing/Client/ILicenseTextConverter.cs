@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,33 +26,33 @@ using System;
 
 namespace Radev.Licensing.Client
 {
-	/// <summary>
-	/// Converts a <see cref="License"/> to and from a string.
-	/// </summary>
-	/// <typeparam name="T">Concrete license type.</typeparam>
-	public interface ILicenseTextConverter<T>
-		where T  : License
-	{
-		/// <summary>
-		/// Converts specified plain text into a new <see cref="License"/>.
-		/// </summary>
-		/// <param name="content">
-		/// String representation of a <c>License</c>. It must be plain
-		/// text representation of a license, encrypted and/or encoded text
-		/// may be rejected or cause invalid results. No check is required.
-		/// </param>
-		/// <returns>
-		/// A new <c>License</c> created with data from <paramref name="content"/>.
-		/// </returns>
-		T Parse(string content);
+    /// <summary>
+    /// Converts a <see cref="License"/> to and from a string.
+    /// </summary>
+    /// <typeparam name="T">Concrete license type.</typeparam>
+    public interface ILicenseTextConverter<T>
+        where T : License
+    {
+        /// <summary>
+        /// Converts specified plain text into a new <see cref="License"/>.
+        /// </summary>
+        /// <param name="content">
+        /// String representation of a <c>License</c>. It must be plain
+        /// text representation of a license, encrypted and/or encoded text
+        /// may be rejected or cause invalid results. No check is required.
+        /// </param>
+        /// <returns>
+        /// A new <c>License</c> created with data from <paramref name="content"/>.
+        /// </returns>
+        T Parse(string content);
 
-		/// <summary>
-		/// Convert specified <c>License</c> to its plain text representation.
-		/// </summary>
-		/// <param name="license"><c>License</c> to convert.</param>
-		/// <returns>
-		/// Plain text (not obsufscated nor encrypted) representation of specified license.
-		/// </returns>
-		string ToString(T license);
-	}
+        /// <summary>
+        /// Convert specified <c>License</c> to its plain text representation.
+        /// </summary>
+        /// <param name="license"><c>License</c> to convert.</param>
+        /// <returns>
+        /// Plain text (not obsufscated nor encrypted) representation of specified license.
+        /// </returns>
+        string ToString(T license);
+    }
 }

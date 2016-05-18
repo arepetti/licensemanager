@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,49 +27,49 @@ using System.Text;
 
 namespace Radev.Licensing.Client
 {
-	/// <summary>
-	/// Additional arguments for <see cref="HardwareAnalyzer.Error"/> event.
-	/// </summary>
-	public sealed class HardwareAnalyzerErrorEventArgs : EventArgs
-	{
-		/// <summary>
-		/// Constructs a new <see cref="HardwareAnalyzerErrorEventArgs"/> object.
-		/// </summary>
-		/// <param name="exception">Exception that stopped hardware scanning.</param>
-		/// <param name="partialResult">
-		/// Partial results, it may contain information collected (by a single query)
-		/// until exception occured.
-		/// </param>
-		public HardwareAnalyzerErrorEventArgs(Exception exception, StringBuilder partialResult)
-		{
-			Exception = exception;
-			PartialResult = partialResult;
-		}
+    /// <summary>
+    /// Additional arguments for <see cref="HardwareAnalyzer.Error"/> event.
+    /// </summary>
+    public sealed class HardwareAnalyzerErrorEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Constructs a new <see cref="HardwareAnalyzerErrorEventArgs"/> object.
+        /// </summary>
+        /// <param name="exception">Exception that stopped hardware scanning.</param>
+        /// <param name="partialResult">
+        /// Partial results, it may contain information collected (by a single query)
+        /// until exception occured.
+        /// </param>
+        public HardwareAnalyzerErrorEventArgs(Exception exception, StringBuilder partialResult)
+        {
+            Exception = exception;
+            PartialResult = partialResult;
+        }
 
-		/// <summary>
-		/// Gets exception that stopped hardware scanning.
-		/// </summary>
-		/// <value>
-		/// Exception that stopped hardware scanning.
-		/// </value>
-		public Exception Exception
-		{
-			get;
-			private set;
-		}
+        /// <summary>
+        /// Gets exception that stopped hardware scanning.
+        /// </summary>
+        /// <value>
+        /// Exception that stopped hardware scanning.
+        /// </value>
+        public Exception Exception
+        {
+            get;
+            private set;
+        }
 
-		/// <summary>
-		/// Gets partial results collected until exception occured.
-		/// </summary>
-		/// <value>
-		/// Partial results collected by a single query until exception
-		/// specified in <see cref="HardwareAnalyzerErrorEventArgs.Exception"/> occured.
-		/// You can modify this result and it will be return value for that query.
-		/// </value>
-		public StringBuilder PartialResult
-		{
-			get;
-			private set;
-		}
-	}
+        /// <summary>
+        /// Gets partial results collected until exception occured.
+        /// </summary>
+        /// <value>
+        /// Partial results collected by a single query until exception
+        /// specified in <see cref="HardwareAnalyzerErrorEventArgs.Exception"/> occured.
+        /// You can modify this result and it will be return value for that query.
+        /// </value>
+        public StringBuilder PartialResult
+        {
+            get;
+            private set;
+        }
+    }
 }

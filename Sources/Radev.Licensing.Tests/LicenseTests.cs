@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,166 +31,166 @@ using Radev.Licensing.Server;
 
 namespace Radev.Licensing.Tests
 {
-	// Most of these test applies also to "public" builds but we
-	// need private key to generate a license then we perform
-	// these test on private builds and they apply unchanged to
-	// public builds too.
+    // Most of these test applies also to "public" builds but we
+    // need private key to generate a license then we perform
+    // these test on private builds and they apply unchanged to
+    // public builds too.
 
-	[TestClass]
-	public class LicenseTests : TestBase
-	{
-		[TestMethod, TestCategory("Server")]
-		public void CreateFromContact()
-		{
-			Assert.IsNotNull(CreateLicenseFromNewContact());
-		}
+    [TestClass]
+    public class LicenseTests : TestBase
+    {
+        [TestMethod, TestCategory("Server")]
+        public void CreateFromContact()
+        {
+            Assert.IsNotNull(CreateLicenseFromNewContact());
+        }
 
-		[TestMethod, TestCategory("Client")]
-		public void CanSetSoftwareVersion()
-		{
-			var softwareVersion = Assemblies.GetProductVersion();
+        [TestMethod, TestCategory("Client")]
+        public void CanSetSoftwareVersion()
+        {
+            var softwareVersion = Assemblies.GetProductVersion();
 
-			var license = CreateLicenseFromNewContact();
-			license.MinimumVersion = new Version(softwareVersion.Major - 1, 0);
-			license.MaximumVersion = new Version(softwareVersion.Major + 1, 0);
+            var license = CreateLicenseFromNewContact();
+            license.MinimumVersion = new Version(softwareVersion.Major - 1, 0);
+            license.MaximumVersion = new Version(softwareVersion.Major + 1, 0);
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.IsTrue(license.IsValid());
-		}
+            license = SaveAndReloadFromDisk(license);
+            Assert.IsTrue(license.IsValid());
+        }
 
-		[TestMethod, TestCategory("Client")]
-		public void CanSetMinimumSoftwareVersion()
-		{
-			var softwareVersion = Assemblies.GetProductVersion();
+        [TestMethod, TestCategory("Client")]
+        public void CanSetMinimumSoftwareVersion()
+        {
+            var softwareVersion = Assemblies.GetProductVersion();
 
-			var license = CreateLicenseFromNewContact();
-			license.MinimumVersion = new Version(softwareVersion.Major + 1, 0);
-			
-			license = SaveAndReloadFromDisk(license);
-			Assert.IsFalse(license.IsValid());
-		}
+            var license = CreateLicenseFromNewContact();
+            license.MinimumVersion = new Version(softwareVersion.Major + 1, 0);
 
-		[TestMethod, TestCategory("Client")]
-		public void CanSetMaximumSoftwareVersion()
-		{
-			var softwareVersion = Assemblies.GetProductVersion();
+            license = SaveAndReloadFromDisk(license);
+            Assert.IsFalse(license.IsValid());
+        }
 
-			var license = CreateLicenseFromNewContact();
-			license.MaximumVersion = new Version(softwareVersion.Major - 1, 0);
+        [TestMethod, TestCategory("Client")]
+        public void CanSetMaximumSoftwareVersion()
+        {
+            var softwareVersion = Assemblies.GetProductVersion();
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.IsFalse(license.IsValid());
-		}
+            var license = CreateLicenseFromNewContact();
+            license.MaximumVersion = new Version(softwareVersion.Major - 1, 0);
 
-		[TestMethod, TestCategory("Client")]
-		public void CanSetValidity()
-		{
-			var license = CreateLicenseFromNewContact();
-			license.Validity = new Interval(DateTime.Now.AddDays(-2), DateTime.Now.AddDays(2));
+            license = SaveAndReloadFromDisk(license);
+            Assert.IsFalse(license.IsValid());
+        }
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.IsTrue(license.IsValid());
-		}
+        [TestMethod, TestCategory("Client")]
+        public void CanSetValidity()
+        {
+            var license = CreateLicenseFromNewContact();
+            license.Validity = new Interval(DateTime.Now.AddDays(-2), DateTime.Now.AddDays(2));
 
-		[TestMethod, TestCategory("Client")]
-		public void CanSetValidityStart()
-		{
-			var license = CreateLicenseFromNewContact();
-			license.Validity = new Interval(DateTime.Now.AddDays(2), null);
+            license = SaveAndReloadFromDisk(license);
+            Assert.IsTrue(license.IsValid());
+        }
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.IsFalse(license.IsValid());
-		}
+        [TestMethod, TestCategory("Client")]
+        public void CanSetValidityStart()
+        {
+            var license = CreateLicenseFromNewContact();
+            license.Validity = new Interval(DateTime.Now.AddDays(2), null);
 
-		[TestMethod, TestCategory("Client")]
-		public void CanSetValidityEnd()
-		{
-			var license = CreateLicenseFromNewContact();
-			license.Validity = new Interval(null, DateTime.Now.AddDays(-2));
+            license = SaveAndReloadFromDisk(license);
+            Assert.IsFalse(license.IsValid());
+        }
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.IsFalse(license.IsValid());
-		}
+        [TestMethod, TestCategory("Client")]
+        public void CanSetValidityEnd()
+        {
+            var license = CreateLicenseFromNewContact();
+            license.Validity = new Interval(null, DateTime.Now.AddDays(-2));
 
-		[TestMethod, TestCategory("Client")]
-		public void ReadAndWriteFeatures()
-		{
-			var license = CreateLicenseFromNewContact();
-			license.Features.Add(1977, 1977);
+            license = SaveAndReloadFromDisk(license);
+            Assert.IsFalse(license.IsValid());
+        }
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.AreEqual(1977, license.ReadFeature(1977));
-			Assert.AreEqual((int?)null, license.ReadFeature(1978));
-		}
+        [TestMethod, TestCategory("Client")]
+        public void ReadAndWriteFeatures()
+        {
+            var license = CreateLicenseFromNewContact();
+            license.Features.Add(1977, 1977);
 
-		[TestMethod, TestCategory("Client")]
-		public void ReadAndWriteEndUserData()
-		{
-			const string endUserFullName = "Chuck Norris";
+            license = SaveAndReloadFromDisk(license);
+            Assert.AreEqual(1977, license.ReadFeature(1977));
+            Assert.AreEqual((int?)null, license.ReadFeature(1978));
+        }
 
-			var license = CreateLicenseFromNewContact();
-			license.EndUser = new EndUser { FullName = endUserFullName };
+        [TestMethod, TestCategory("Client")]
+        public void ReadAndWriteEndUserData()
+        {
+            const string endUserFullName = "Chuck Norris";
 
-			license = SaveAndReloadFromDisk(license);
-			Assert.AreEqual(endUserFullName, license.EndUser.FullName);
-		}
+            var license = CreateLicenseFromNewContact();
+            license.EndUser = new EndUser { FullName = endUserFullName };
 
-		[TestMethod, TestCategory("Client")]
-		[ExpectedException(typeof(LicenseException))]
-		public void TamperedLicenseIsRejected()
-		{
-			var license = CreateLicenseFromNewContact();
-			var encodedLicense = new StringBuilder(LicenseWriter.ToString(license));
-			encodedLicense[0] = 'A'; // I'd assume we dont already have this sequence...
-			encodedLicense[1] = 'B';
-			encodedLicense[2] = 'C';
-			encodedLicense[3] = 'D';
+            license = SaveAndReloadFromDisk(license);
+            Assert.AreEqual(endUserFullName, license.EndUser.FullName);
+        }
 
-			LicenseReader.FromString(encodedLicense.ToString());
-		}
+        [TestMethod, TestCategory("Client")]
+        [ExpectedException(typeof(LicenseException))]
+        public void TamperedLicenseIsRejected()
+        {
+            var license = CreateLicenseFromNewContact();
+            var encodedLicense = new StringBuilder(LicenseWriter.ToString(license));
+            encodedLicense[0] = 'A'; // I'd assume we dont already have this sequence...
+            encodedLicense[1] = 'B';
+            encodedLicense[2] = 'C';
+            encodedLicense[3] = 'D';
 
-		[TestMethod, TestCategory("Client")]
-		[ExpectedException(typeof(LicenseException))]
-		public void NotSignedLicenseIsRejected()
-		{
-			var license = CreateLicenseFromNewContact();
-			var encodedLicense = LicenseWriter.ToString(license);
+            LicenseReader.FromString(encodedLicense.ToString());
+        }
 
-			LicenseReader.FromString(encodedLicense.Split('.').First());
-		}
+        [TestMethod, TestCategory("Client")]
+        [ExpectedException(typeof(LicenseException))]
+        public void NotSignedLicenseIsRejected()
+        {
+            var license = CreateLicenseFromNewContact();
+            var encodedLicense = LicenseWriter.ToString(license);
 
-		[TestMethod, TestCategory("Client")]
-		[ExpectedException(typeof(LicenseException))]
-		public void InvalidLicenseIsRejected1()
-		{
-			LicenseReader.FromString("This is an invalid license text");
-		}
+            LicenseReader.FromString(encodedLicense.Split('.').First());
+        }
 
-		[TestMethod, TestCategory("Client")]
-		[ExpectedException(typeof(LicenseException))]
-		public void InvalidLicenseIsRejected2()
-		{
-			LicenseReader.FromString(
-				Convert.ToBase64String(Encoding.UTF8.GetBytes("This is an invalid license text")));
-		}
+        [TestMethod, TestCategory("Client")]
+        [ExpectedException(typeof(LicenseException))]
+        public void InvalidLicenseIsRejected1()
+        {
+            LicenseReader.FromString("This is an invalid license text");
+        }
 
-		private static License CreateLicenseFromNewContact(Action<Contact> customizeContact = null)
-		{
-			var contact = ContactFactory.Create<Contact>();
+        [TestMethod, TestCategory("Client")]
+        [ExpectedException(typeof(LicenseException))]
+        public void InvalidLicenseIsRejected2()
+        {
+            LicenseReader.FromString(
+                Convert.ToBase64String(Encoding.UTF8.GetBytes("This is an invalid license text")));
+        }
 
-			if (customizeContact != null)
-				customizeContact(contact);
+        private static License CreateLicenseFromNewContact(Action<Contact> customizeContact = null)
+        {
+            var contact = ContactFactory.Create<Contact>();
 
-			return LicenseFactory.Create<License>(contact);
-		}
+            if (customizeContact != null)
+                customizeContact(contact);
 
-		private static License SaveAndReloadFromDisk(License license)
-		{
-			using (var path = new TemporaryFile())
-			{
-				LicenseWriter.ToFile(path, license);
-				return LicenseReader.FromFile(path);
-			}
-		}
-	}
+            return LicenseFactory.Create<License>(contact);
+        }
+
+        private static License SaveAndReloadFromDisk(License license)
+        {
+            using (var path = new TemporaryFile())
+            {
+                LicenseWriter.ToFile(path, license);
+                return LicenseReader.FromFile(path);
+            }
+        }
+    }
 }

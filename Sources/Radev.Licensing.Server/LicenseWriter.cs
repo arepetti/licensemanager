@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,33 +29,57 @@ using Radev.Licensing.Client;
 
 namespace Radev.Licensing.Server
 {
-	/// <summary>
-	/// Factory class to create convert a <see cref="License"/> to a secure string representation.
-	/// </summary>
-	public static class LicenseWriter
-	{
-		public static string ToString<TLicense, TConverter>(TLicense license)
-			where TLicense : License
-			where TConverter : ILicenseTextConverter<TLicense>, new()
-		{
-			return ServerSecureCommunication.EncodeMessageFromServer(new TConverter().ToString(license));
-		}
+    /// <summary>
+    /// Factory class to create convert a <see cref="License"/> to a secure string representation.
+    /// </summary>
+    public static class LicenseWriter
+    {
+        /// <summary>
+        /// Convert license to a string.
+        /// </summary>
+        /// <typeparam name="TLicense">Type of the license.</typeparam>
+        /// <typeparam name="TConverter">Converter used to transform the license into text.</typeparam>
+        /// <param name="license">License to be converted.</param>
+        /// <returns>A string with the full content of the given license.</returns>
+        public static string ToString<TLicense, TConverter>(TLicense license)
+            where TLicense : License
+            where TConverter : ILicenseTextConverter<TLicense>, new()
+        {
+            return ServerSecureCommunication.EncodeMessageFromServer(new TConverter().ToString(license));
+        }
 
-		public static string ToString(License license)
-		{
-			return ToString<License, IniLicenseTextConverter<License>>(license);
-		}
+        /// <summary>
+        /// Convert license to a string.
+        /// </summary>
+        /// <param name="license">License to be converted.</param>
+        /// <returns>A string with the full content of the given license.</returns>
+        public static string ToString(License license)
+        {
+            return ToString<License, IniLicenseTextConverter<License>>(license);
+        }
 
-		public static void ToFile<TLicense, TConverter>(string path, TLicense license)
-			where TLicense : License
-			where TConverter : ILicenseTextConverter<TLicense>, new()
-		{
-			File.WriteAllText(path, ToString<TLicense, TConverter>(license), Encoding.UTF8);
-		}
+        /// <summary>
+        /// Write license into a UTF-8 text file.
+        /// </summary>
+        /// <typeparam name="TLicense">Type of the license.</typeparam>
+        /// <typeparam name="TConverter">Converter used to transform the license into text.</typeparam>
+        /// <param name="path">Full path of the UTF-8 text file that will contain the license. If existing it will be overwritten.</param>
+        /// <param name="license">License to be converted.</param>
+        public static void ToFile<TLicense, TConverter>(string path, TLicense license)
+            where TLicense : License
+            where TConverter : ILicenseTextConverter<TLicense>, new()
+        {
+            File.WriteAllText(path, ToString<TLicense, TConverter>(license), Encoding.UTF8);
+        }
 
-		public static void ToFile(string path, License license)
-		{
-			ToFile<License, IniLicenseTextConverter<License>>(path, license);
-		}
-	}
+        /// <summary>
+        /// Write license into a UTF-8 text file.
+        /// </summary>
+        /// <param name="path">Full path of the UTF-8 text file that will contain the license. If existing it will be overwritten.</param>
+        /// <param name="license">License to be converted.</param>
+        public static void ToFile(string path, License license)
+        {
+            ToFile<License, IniLicenseTextConverter<License>>(path, license);
+        }
+    }
 }

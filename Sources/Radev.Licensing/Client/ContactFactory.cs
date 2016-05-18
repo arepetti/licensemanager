@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,37 +26,37 @@ using System;
 
 namespace Radev.Licensing.Client
 {
-	/// <summary>
-	/// Factory class to create a new <see cref="Contact"/>.
-	/// </summary>
-	public static class ContactFactory
-	{
-		/// <summary>
-		/// Create a new <see cref="Contact"/>.
-		/// </summary>
-		/// <typeparam name="T">Effective type of created contact.</typeparam>
-		/// <returns>
-		/// New contact initialized with all properties required in <code>Contact</code>
-		/// base class and containing gathered system configuration (as indicated in
-		/// <see cref="Contact.CreateHardwareAnalyzer"/>).
-		/// </returns>
-		/// <remarks>
-		/// If you use a custom derived class you have to manually fill all extra
-		/// properties you wish to save. Derived classes must also
-		/// define their own <see cref="IContactTextConverter{TContact}"/> and
-		/// use generic version of string conversion methods.
-		/// </remarks>
-		public static T Create<T>()
-			where T : Contact, new()
-		{
-			var contact = new T();
+    /// <summary>
+    /// Factory class to create a new <see cref="Contact"/>.
+    /// </summary>
+    public static class ContactFactory
+    {
+        /// <summary>
+        /// Create a new <see cref="Contact"/>.
+        /// </summary>
+        /// <typeparam name="T">Effective type of created contact.</typeparam>
+        /// <returns>
+        /// New contact initialized with all properties required in <code>Contact</code>
+        /// base class and containing gathered system configuration (as indicated in
+        /// <see cref="Contact.CreateHardwareAnalyzer"/>).
+        /// </returns>
+        /// <remarks>
+        /// If you use a custom derived class you have to manually fill all extra
+        /// properties you wish to save. Derived classes must also
+        /// define their own <see cref="IContactTextConverter{TContact}"/> and
+        /// use generic version of string conversion methods.
+        /// </remarks>
+        public static T Create<T>()
+            where T : Contact, new()
+        {
+            var contact = new T();
 
-			contact.Id = Guid.NewGuid().ToString();
-			contact.CreationTime = DateTime.UtcNow;
-			contact.RequiredHardwareConfiguration = contact.CreateHardwareAnalyzer().Query();
-			contact.SoftwareVersion = contact.ResolveSoftwareVersion();
+            contact.Id = Guid.NewGuid().ToString();
+            contact.CreationTime = DateTime.UtcNow;
+            contact.RequiredHardwareConfiguration = contact.CreateHardwareAnalyzer().Query();
+            contact.SoftwareVersion = contact.ResolveSoftwareVersion();
 
-			return contact;
-		}
-	}
+            return contact;
+        }
+    }
 }

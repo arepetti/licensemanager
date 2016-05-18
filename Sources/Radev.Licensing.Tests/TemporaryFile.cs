@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,59 +28,59 @@ using System.Threading;
 
 namespace Radev.Licensing.Tests
 {
-	/// <summary>
-	/// Helper class to create and automatically delete (with <em>Dispose pattern</em>)
-	/// a temporary file.
-	/// </summary>
-	sealed class TemporaryFile : IDisposable
-	{
-		public TemporaryFile(string path = null)
-		{
-			_path = path ?? Path.GetTempFileName();
-		}
+    /// <summary>
+    /// Helper class to create and automatically delete (with <em>Dispose pattern</em>)
+    /// a temporary file.
+    /// </summary>
+    sealed class TemporaryFile : IDisposable
+    {
+        public TemporaryFile(string path = null)
+        {
+            _path = path ?? Path.GetTempFileName();
+        }
 
-		~TemporaryFile()
-		{
-			Dispose(false);
-		}
+        ~TemporaryFile()
+        {
+            Dispose(false);
+        }
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		public static implicit operator string(TemporaryFile file)
-		{
-			return file._path;
-		}
+        public static implicit operator string(TemporaryFile file)
+        {
+            return file._path;
+        }
 
-		private string _path;
+        private string _path;
 
-		private void Dispose(bool disposing)
-		{
-			if (!File.Exists(_path))
-				return;
+        private void Dispose(bool disposing)
+        {
+            if (!File.Exists(_path))
+                return;
 
-			for (int i = 0; i < 3; ++i)
-			{
-				try
-				{
-					File.Delete(_path);
-					return;
-				}
-				catch (IOException)
-				{
-				}
-				catch (UnauthorizedAccessException)
-				{
-				}
+            for (int i = 0; i < 3; ++i)
+            {
+                try
+                {
+                    File.Delete(_path);
+                    return;
+                }
+                catch (IOException)
+                {
+                }
+                catch (UnauthorizedAccessException)
+                {
+                }
 
-				Thread.Sleep(500);
-			}
+                Thread.Sleep(500);
+            }
 
-			// Last attempt, it will propagate exception up to the caller
-			File.Delete(_path);
-		}
-	}
+            // Last attempt, it will propagate exception up to the caller
+            File.Delete(_path);
+        }
+    }
 }

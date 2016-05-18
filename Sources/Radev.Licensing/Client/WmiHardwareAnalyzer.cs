@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,68 +30,68 @@ using System.Text;
 
 namespace Radev.Licensing.Client
 {
-	/// <summary>
-	/// Implements <see cref="HardwareAnalyzer"/> gathering
-	/// hardware information using WMI queries.
-	/// </summary>
-	/// <remarks>
-	/// See <see cref="Constraints.WmiQueriesForHardwareConfiguration"/>
-	/// for list and syntax of supported WMI queries.
-	/// </remarks>
-	public class WmiHardwareAnalyzer : HardwareAnalyzer
-	{
-		protected override string Query(string query)
-		{
-			var parts = query.SplitKeyValuePair(ClassNameAndPropertiesSeparator);
-			return Query(parts.Key, parts.Value.Split(PropertiesSeparator));
-		}
+    /// <summary>
+    /// Implements <see cref="HardwareAnalyzer"/> gathering
+    /// hardware information using WMI queries.
+    /// </summary>
+    /// <remarks>
+    /// See <see cref="Constraints.WmiQueriesForHardwareConfiguration"/>
+    /// for list and syntax of supported WMI queries.
+    /// </remarks>
+    public class WmiHardwareAnalyzer : HardwareAnalyzer
+    {
+        protected override string Query(string query)
+        {
+            var parts = query.SplitKeyValuePair(ClassNameAndPropertiesSeparator);
+            return Query(parts.Key, parts.Value.Split(PropertiesSeparator));
+        }
 
-		private const char PropertiesSeparator = '&';
-		private const char ClassNameAndPropertiesSeparator = '.';
-		private const string EntriesValueSeparator = ",";
-		private const string PropertiesValueSeparator = " ";
+        private const char PropertiesSeparator = '&';
+        private const char ClassNameAndPropertiesSeparator = '.';
+        private const string EntriesValueSeparator = ",";
+        private const string PropertiesValueSeparator = " ";
 
-		private string Query(string queryOrClassName, string[] properties)
-		{
-			// Each query may produce multiple results and for each result
-			// all required properties are joined. Each property is separated with
-			// PropertiesValueSeparator and each result is separated with EntriesValueSeparator.
-			// Leading and trailing spaces are trimmed everywhere.
-			var result = new StringBuilder();
+        private string Query(string queryOrClassName, string[] properties)
+        {
+            // Each query may produce multiple results and for each result
+            // all required properties are joined. Each property is separated with
+            // PropertiesValueSeparator and each result is separated with EntriesValueSeparator.
+            // Leading and trailing spaces are trimmed everywhere.
+            var result = new StringBuilder();
 
-			try
-			{
-				var query = new SelectQuery(queryOrClassName);
-				using (var searcher = new ManagementObjectSearcher(query))
-				{
-					var entries = searcher.Get()
-						.OfType<ManagementBaseObject>()
-						.Select(x => WmiObjectToString(x, properties))
-						.Where(x => !String.IsNullOrWhiteSpace(x));
+            try
+            {
+                var query = new SelectQuery(queryOrClassName);
+                using (var searcher = new ManagementObjectSearcher(query))
+                {
+                    var entries = searcher.Get()
+                        .OfType<ManagementBaseObject>()
+                        .Select(x => WmiObjectToString(x, properties))
+                        .Where(x => !String.IsNullOrWhiteSpace(x));
 
-					result.Append(String.Join(EntriesValueSeparator, entries));
-				}
-			}
-			catch (ManagementException exception)
-			{
-				OnError(new HardwareAnalyzerErrorEventArgs(exception, result));
-			}
+                    result.Append(String.Join(EntriesValueSeparator, entries));
+                }
+            }
+            catch (ManagementException exception)
+            {
+                OnError(new HardwareAnalyzerErrorEventArgs(exception, result));
+            }
 
-			return result.RemoveNewLinesAndTabs().ToString();
-		}
+            return result.RemoveNewLinesAndTabs().ToString();
+        }
 
-		private static string WmiObjectToString(ManagementBaseObject obj, string[] properties)
-		{
-			var values = properties
-				.Select(x => WmiPropertyToString(obj[x]))
-				.Where(x => !String.IsNullOrWhiteSpace(x));
+        private static string WmiObjectToString(ManagementBaseObject obj, string[] properties)
+        {
+            var values = properties
+                .Select(x => WmiPropertyToString(obj[x]))
+                .Where(x => !String.IsNullOrWhiteSpace(x));
 
-			return String.Join(PropertiesValueSeparator, values);
-		}
+            return String.Join(PropertiesValueSeparator, values);
+        }
 
-		private static string WmiPropertyToString(object obj)
-		{
-			return Convert.ToString(obj, CultureInfo.InvariantCulture).Trim();
-		}
-	}
+        private static string WmiPropertyToString(object obj)
+        {
+            return Convert.ToString(obj, CultureInfo.InvariantCulture).Trim();
+        }
+    }
 }

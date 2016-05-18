@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,30 +26,30 @@ using System;
 
 namespace Radev.Licensing
 {
-	/// <summary>
-	/// Represents errors related to licensing.
-	/// </summary>
-	public sealed class LicenseException : Exception
-	{
-		/// <summary>
-		/// Constructs a new <see cref="LicenseException"/> object with
-		/// a specified error message.
-		/// </summary>
-		/// <param name="message">Error messages that describes an error.</param>
-		public LicenseException(string message)
-			: base(message)
-		{
-		}
+    /// <summary>
+    /// Represents errors related to licensing.
+    /// </summary>
+    public sealed class LicenseException : Exception
+    {
+        /// <summary>
+        /// Constructs a new <see cref="LicenseException"/> object with
+        /// a specified error message.
+        /// </summary>
+        /// <param name="message">Error messages that describes an error.</param>
+        public LicenseException(string message)
+            : base(message)
+        {
+        }
 
-		/// <summary>
-		/// Constructs a new <see cref="LicenseException"/> object with
-		/// a specified error message an an inner exception that caused this issue.
-		/// </summary>
-		/// <param name="message">Error messages that describes an error.</param>
-		/// <param name="exception">Inner exception that caused this error.</param>
-		public LicenseException(string message, Exception exception)
-			: base(message, exception)
-		{
-		}
-	}
+        /// <summary>
+        /// Constructs a new <see cref="LicenseException"/> object with
+        /// a specified error message an an inner exception that caused this issue.
+        /// </summary>
+        /// <param name="message">Error messages that describes an error.</param>
+        /// <param name="exception">Inner exception that caused this error.</param>
+        public LicenseException(string message, Exception exception)
+            : base(message, exception)
+        {
+        }
+    }
 }

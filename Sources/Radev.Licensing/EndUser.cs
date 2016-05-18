@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,107 +26,107 @@ using System;
 
 namespace Radev.Licensing
 {
-	/// <summary>
-	/// Contains information about end-user to whom license has been issued.
-	/// </summary>
-	public sealed class EndUser
-	{
-		/// <summary>
-		/// Gets/sets user's full name.
-		/// </summary>
-		/// <value>
-		/// User's full name, in any form is valid for her culture or for company policy.
-		/// It's not restricted in length and it may be <see langword="null"/> if this
-		/// information is not available. This is the physical person to whom license
-		/// has been issued, when it's not applicable then simply leave this field empty.
-		/// <br/>
-		/// Default value is <see langword="null"/>.
-		/// </value>
-		public string FullName
-		{
-			get;
-			set;
-		}
+    /// <summary>
+    /// Contains information about end-user to whom license has been issued.
+    /// </summary>
+    public sealed class EndUser
+    {
+        /// <summary>
+        /// Gets/sets user's full name.
+        /// </summary>
+        /// <value>
+        /// User's full name, in any form is valid for her culture or for company policy.
+        /// It's not restricted in length and it may be <see langword="null"/> if this
+        /// information is not available. This is the physical person to whom license
+        /// has been issued, when it's not applicable then simply leave this field empty.
+        /// <br/>
+        /// Default value is <see langword="null"/>.
+        /// </value>
+        public string FullName
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets/sets user's organization name.
-		/// </summary>
-		/// <value>
-		/// User's organization name, in any form is valid for her culture or for company policy.
-		/// It's not restricted in length and it may be <see langword="null"/> if this
-		/// information is not available. This is the legal organization to which license
-		/// has been issued, when it's not applicable (for example in case of private end-users)
-		/// simply leave this field empty.
-		/// <br/>
-		/// Default value is <see langword="null"/>.
-		/// </value>
-		public string Organization
-		{
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets/sets user's organization name.
+        /// </summary>
+        /// <value>
+        /// User's organization name, in any form is valid for her culture or for company policy.
+        /// It's not restricted in length and it may be <see langword="null"/> if this
+        /// information is not available. This is the legal organization to which license
+        /// has been issued, when it's not applicable (for example in case of private end-users)
+        /// simply leave this field empty.
+        /// <br/>
+        /// Default value is <see langword="null"/>.
+        /// </value>
+        public string Organization
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets/sets user's address name.
-		/// </summary>
-		/// <value>
-		/// User's address (home or office, use is unspecified), in any form is valid for her culture
-		/// or for company policy. It's not restricted in length and it may be <see langword="null"/>
-		/// if this information is not available.
-		/// <br/>
-		/// Default value is <see langword="null"/>.
-		/// </value>
-		public string Address
-		{
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets/sets user's address name.
+        /// </summary>
+        /// <value>
+        /// User's address (home or office, use is unspecified), in any form is valid for her culture
+        /// or for company policy. It's not restricted in length and it may be <see langword="null"/>
+        /// if this information is not available.
+        /// <br/>
+        /// Default value is <see langword="null"/>.
+        /// </value>
+        public string Address
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets/sets user's phone number.
-		/// </summary>
-		/// <value>
-		/// User's phone number (home or office, use is unspecified), in any form is valid for her culture
-		/// or for company policy. It's not restricted in length and it may be <see langword="null"/>
-		/// if this information is not available.
-		/// <br/>
-		/// Default value is <see langword="null"/>.
-		/// </value>
-		public string PhoneNumber
-		{
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets/sets user's phone number.
+        /// </summary>
+        /// <value>
+        /// User's phone number (home or office, use is unspecified), in any form is valid for her culture
+        /// or for company policy. It's not restricted in length and it may be <see langword="null"/>
+        /// if this information is not available.
+        /// <br/>
+        /// Default value is <see langword="null"/>.
+        /// </value>
+        public string PhoneNumber
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets/sets user's e-mail address.
-		/// </summary>
-		/// <value>
-		/// User's e-mail address (home or office, use is unspecified), in any form is valid for her culture
-		/// or for company policy. It's not restricted in length and it may be <see langword="null"/>
-		/// if this information is not available.
-		/// <br/>
-		/// Default value is <see langword="null"/>.
-		/// </value>
-		public string EMailAddress
-		{
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets/sets user's e-mail address.
+        /// </summary>
+        /// <value>
+        /// User's e-mail address (home or office, use is unspecified), in any form is valid for her culture
+        /// or for company policy. It's not restricted in length and it may be <see langword="null"/>
+        /// if this information is not available.
+        /// <br/>
+        /// Default value is <see langword="null"/>.
+        /// </value>
+        public string EMailAddress
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets/sets any other relevant note about end-user or about this license.
-		/// </summary>
-		/// <value>
-		/// Optional additional information about end-user or this license. Leave empty
-		/// when not applicable.
-		/// <br/>
-		/// Default value is <see langword="null"/>.
-		/// </value>
-		public string Notes
-		{
-			get;
-			set;
-		}
-	}
+        /// <summary>
+        /// Gets/sets any other relevant note about end-user or about this license.
+        /// </summary>
+        /// <value>
+        /// Optional additional information about end-user or this license. Leave empty
+        /// when not applicable.
+        /// <br/>
+        /// Default value is <see langword="null"/>.
+        /// </value>
+        public string Notes
+        {
+            get;
+            set;
+        }
+    }
 }

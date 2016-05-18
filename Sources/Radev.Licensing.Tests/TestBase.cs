@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,19 +28,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Radev.Licensing.Tests
 {
-	public abstract class TestBase
-	{
-		protected static void CompareDictionaries(IDictionary<string, string> dict1, IDictionary<string, string> dict2, string message)
-		{
-			// I may use CollectionAssert but I'd like to provide a more detailed description of unmatched element
-			Assert.IsTrue(dict1.Count == dict2.Count, message);
-			foreach (var entry in dict1)
-			{
-				string value1 = entry.Value;
-				string value2 = dict2[entry.Key];
+    public abstract class TestBase
+    {
+        protected static void CompareDictionaries(IDictionary<string, string> dict1, IDictionary<string, string> dict2, string message)
+        {
+            // I may use CollectionAssert but I'd like to provide a more detailed description of unmatched element
+            Assert.IsTrue(dict1.Count == dict2.Count, message);
+            foreach (var entry in dict1)
+            {
+                string value1 = entry.Value;
+                string value2 = dict2[entry.Key];
 
-				Assert.IsTrue(value1 == value2, String.Format("{0}. '{1}' is not the same as '{2}'.", message.TrimEnd('.'), value1, value2));
-			}
-		}
-	}
+                Assert.IsTrue(value1 == value2, String.Format("{0}. '{1}' is not the same as '{2}'.", message.TrimEnd('.'), value1, value2));
+            }
+        }
+    }
 }

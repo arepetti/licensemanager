@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,24 +28,24 @@ using System.Text;
 
 namespace Radev.Licensing.Client
 {
-	static class StringExtensions
-	{
-		public static KeyValuePair<string, string> SplitKeyValuePair(this string source, char separator)
-		{
-			if (String.IsNullOrEmpty(source))
-				return new KeyValuePair<string, string>();
+    static class StringExtensions
+    {
+        public static KeyValuePair<string, string> SplitKeyValuePair(this string source, char separator)
+        {
+            if (String.IsNullOrEmpty(source))
+                return new KeyValuePair<string, string>();
 
-			string[] parts = source.Split(new char[] { separator }, 2);
+            string[] parts = source.Split(new char[] { separator }, 2);
 
-			if (parts.Length == 2)
-				return new KeyValuePair<string, string>(parts[0].Trim(), parts[1].Trim());
+            if (parts.Length == 2)
+                return new KeyValuePair<string, string>(parts[0].Trim(), parts[1].Trim());
 
-			return new KeyValuePair<string, string>(parts[0].Trim(), "");
-		}
+            return new KeyValuePair<string, string>(parts[0].Trim(), "");
+        }
 
-		public static StringBuilder RemoveNewLinesAndTabs(this StringBuilder sb)
-		{
-			return sb.Replace("\r", "").Replace("\n", "").Replace("\t", " ");
-		}
-	}
+        public static StringBuilder RemoveNewLinesAndTabs(this StringBuilder sb)
+        {
+            return sb.Replace("\r", "").Replace("\n", "").Replace("\t", " ");
+        }
+    }
 }

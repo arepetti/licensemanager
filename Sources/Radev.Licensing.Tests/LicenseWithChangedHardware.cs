@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2015 Repetti Adriano.
+// Copyright (c) 2016 Repetti Adriano.
 //
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,72 +27,72 @@ using Radev.Licensing.Client;
 
 namespace Radev.Licensing.Tests
 {
-	sealed class LicenseWithChangedHardware : License
-	{
-		protected override HardwareAnalyzer CreateHardwareAnalyzer()
-		{
-			return new FakeHardwareAnalyzer();
-		}
+    sealed class LicenseWithChangedHardware : License
+    {
+        protected override HardwareAnalyzer CreateHardwareAnalyzer()
+        {
+            return new FakeHardwareAnalyzer();
+        }
 
-		private sealed class FakeHardwareAnalyzer : HardwareAnalyzer
-		{
-			public FakeHardwareAnalyzer()
-			{
-				Queries = new string[] { "new hardware 1", "new hardware 2", "new hardware 3" }; // Just fake values
-			}
+        private sealed class FakeHardwareAnalyzer : HardwareAnalyzer
+        {
+            public FakeHardwareAnalyzer()
+            {
+                Queries = new string[] { "new hardware 1", "new hardware 2", "new hardware 3" }; // Just fake values
+            }
 
-			protected override string Query(string query)
-			{
-				// Result of each query is query itself, it will
-				// make tests fail when license is generated with default analyzer.
-				return query;
-			}
-		}
-	}
+            protected override string Query(string query)
+            {
+                // Result of each query is query itself, it will
+                // make tests fail when license is generated with default analyzer.
+                return query;
+            }
+        }
+    }
 
-	sealed class ContactForSlightlyChangedHardware : Contact
-	{
-		protected override HardwareAnalyzer CreateHardwareAnalyzer()
-		{
-			return new FakeHardwareAnalyzer();
-		}
+    sealed class ContactForSlightlyChangedHardware : Contact
+    {
+        protected override HardwareAnalyzer CreateHardwareAnalyzer()
+        {
+            return new FakeHardwareAnalyzer();
+        }
 
-		private sealed class FakeHardwareAnalyzer : HardwareAnalyzer
-		{
-			public FakeHardwareAnalyzer()
-			{
-				Queries = new string[] { "1", "2", "to change" }; // Just fake values
-			}
+        private sealed class FakeHardwareAnalyzer : HardwareAnalyzer
+        {
+            public FakeHardwareAnalyzer()
+            {
+                Queries = new string[] { "1", "2", "to change" }; // Just fake values
+            }
 
-			protected override string Query(string query)
-			{
-				// Result of each query is query itself, it will
-				// make tests fail when license is generated with default analyzer.
-				return query;
-			}
-		}
-	}
+            protected override string Query(string query)
+            {
+                // Result of each query is query itself, it will
+                // make tests fail when license is generated with default analyzer.
+                return query;
+            }
+        }
+    }
 
-	sealed class LicenseWithSlightlyChangedHardware : License
-	{
-		protected override HardwareAnalyzer CreateHardwareAnalyzer()
-		{
-			return new FakeHardwareAnalyzer();
-		}
+    sealed class LicenseWithSlightlyChangedHardware : License
+    {
+        protected override HardwareAnalyzer CreateHardwareAnalyzer()
+        {
+            return new FakeHardwareAnalyzer();
+        }
 
-		private sealed class FakeHardwareAnalyzer : HardwareAnalyzer
-		{
-			public FakeHardwareAnalyzer()
-			{
-				Queries = new string[] { "1", "2", "changed" }; // Just fake values
-			}
+        private sealed class FakeHardwareAnalyzer : HardwareAnalyzer
+        {
+            public FakeHardwareAnalyzer()
+            {
+                Queries = new string[] { "1", "2", "changed" }; // Just fake values
+            }
 
-			protected override string Query(string query)
-			{
-				// Result of each query is query itself, it will
-				// make tests fail when license is generated with default analyzer.
-				return query;
-			}
-		}
-	}
+            protected override string Query(string query)
+            {
+                // Result of each query is query itself, it will
+                // make tests fail when license is generated with default analyzer.
+                return query;
+            }
+        }
+    }
 }
