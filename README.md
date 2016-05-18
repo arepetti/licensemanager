@@ -27,6 +27,7 @@ is generated from a contact and it's indissolubly tied to a specific machine.
 This project cannot be used as-is, to be effective you must include full source code in your repository
 and change it as described here, read carefully these notes. Project is separated in groups:
 
+* Read about [Code Obfuscation](https://github.com/arepetti/licensemanager/wiki/Code-Obfuscation).
 * Code that must deployed together with your application stays in `Radev.Licensing.dll`. This assembly also
 contains code used by server components.
 * Code that **must** be only on your private server (if you wish to have a private license server) stays in
@@ -77,6 +78,8 @@ if (LicenseManager.IsFeatureAvailable(Feature.AdvancedExpensiveFeature)) {
     ExecuteAnAdvancedExpensiveFeature(); 
 }
 ```
+
+If in doubt about where you license file should be you may read [Where to Save License File](https://github.com/arepetti/licensemanager/wiki/Where-to-Save-License-File).
 
 Please note you can assign a validity interval for your license (I strongly suggest to always
 make it valid from the day it has been created) and also specify which version (again a range)
